@@ -139,6 +139,7 @@ class LoginViewController: UIViewController {
 
             print(result?.user)
             print(result?.additionalUserInfo)
+            self.handleLoginSucceed(user: result?.user)
         }
     }
 
@@ -164,10 +165,29 @@ class LoginViewController: UIViewController {
                 print(authResult?.user)
                 print(authResult?.additionalUserInfo)
                 print(authResult?.additionalUserInfo?.profile)
+                self.handleLoginSucceed(user: authResult?.user)
             }
         }
     }
 
+    fileprivate func handleLoginSucceed(user: User?) {
+
+        guard let fireUser = user else {return}
+
+        FIRDatabaseManager.shared.userRef.child(fireUser.uid).setValue([
+            "name": fireUser.displayName ?? "",
+            "email": fireUser.email ?? "",
+            "id": fireUser.uid,
+            "avatar_url": fireUser.photoURL?.absoluteString ?? "",
+            "dialog_ids": []
+            ])
+
+        guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "MainTabViewController") else {
+            return
+        }
+
+        self.present(controller, animated: true, completion: nil)
+    }
 }
 
 extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate {
@@ -198,6 +218,7 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate {
             print(authResult?.user)
             print(authResult?.additionalUserInfo)
             print(authResult?.additionalUserInfo?.profile)
+            self.handleLoginSucceed(user: authResult?.user)
         }
     }
 

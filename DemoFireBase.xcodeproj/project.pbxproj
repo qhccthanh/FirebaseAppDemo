@@ -15,6 +15,11 @@
 		F4DD736920F38968003B977D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4DD736820F38968003B977D /* Assets.xcassets */; };
 		F4DD736C20F38968003B977D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4DD736A20F38968003B977D /* LaunchScreen.storyboard */; };
 		F4DD737420F389D0003B977D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4DD737320F389D0003B977D /* GoogleService-Info.plist */; };
+		F4F5730720F630170035A2CD /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5730620F630170035A2CD /* UserInfo.swift */; };
+		F4F5730920F630200035A2CD /* DialogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5730820F630200035A2CD /* DialogInfo.swift */; };
+		F4F5730B20F630290035A2CD /* MessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5730A20F630290035A2CD /* MessageInfo.swift */; };
+		F4F5730D20F633C90035A2CD /* FIRDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5730C20F633C90035A2CD /* FIRDatabaseManager.swift */; };
+		F4F5731120F6360E0035A2CD /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5731020F6360E0035A2CD /* UsersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 		F4DD736B20F38968003B977D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4DD736D20F38968003B977D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4DD737320F389D0003B977D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F4F5730620F630170035A2CD /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		F4F5730820F630200035A2CD /* DialogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogInfo.swift; sourceTree = "<group>"; };
+		F4F5730A20F630290035A2CD /* MessageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfo.swift; sourceTree = "<group>"; };
+		F4F5730C20F633C90035A2CD /* FIRDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRDatabaseManager.swift; sourceTree = "<group>"; };
+		F4F5731020F6360E0035A2CD /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		FB82CB2DEE1AB09F03489AAB /* Pods-DemoFireBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFireBase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoFireBase/Pods-DemoFireBase.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +92,7 @@
 		F4DD736020F38966003B977D /* DemoFireBase */ = {
 			isa = PBXGroup;
 			children = (
+				F4F5730520F62FFE0035A2CD /* Models */,
 				F4DD736120F38966003B977D /* AppDelegate.swift */,
 				F4DD736320F38966003B977D /* LoginViewController.swift */,
 				F4DD736520F38966003B977D /* Main.storyboard */,
@@ -90,8 +101,20 @@
 				F4DD736D20F38968003B977D /* Info.plist */,
 				F4DD737320F389D0003B977D /* GoogleService-Info.plist */,
 				F449FDCA20F39E5B00AF95A7 /* UserManager.swift */,
+				F4F5730C20F633C90035A2CD /* FIRDatabaseManager.swift */,
+				F4F5731020F6360E0035A2CD /* UsersViewController.swift */,
 			);
 			path = DemoFireBase;
+			sourceTree = "<group>";
+		};
+		F4F5730520F62FFE0035A2CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4F5730620F630170035A2CD /* UserInfo.swift */,
+				F4F5730820F630200035A2CD /* DialogInfo.swift */,
+				F4F5730A20F630290035A2CD /* MessageInfo.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +219,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -207,6 +231,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,9 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F5730720F630170035A2CD /* UserInfo.swift in Sources */,
 				F449FDCB20F39E5B00AF95A7 /* UserManager.swift in Sources */,
 				F4DD736420F38966003B977D /* LoginViewController.swift in Sources */,
+				F4F5730D20F633C90035A2CD /* FIRDatabaseManager.swift in Sources */,
 				F4DD736220F38966003B977D /* AppDelegate.swift in Sources */,
+				F4F5731120F6360E0035A2CD /* UsersViewController.swift in Sources */,
+				F4F5730920F630200035A2CD /* DialogInfo.swift in Sources */,
+				F4F5730B20F630290035A2CD /* MessageInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

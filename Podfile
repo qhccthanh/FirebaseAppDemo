@@ -9,5 +9,6 @@ target 'DemoFireBase' do
   pod 'SnapKit'
   pod 'GoogleSignIn'
     pod 'FBSDKLoginKit'
+    pod 'Firebase/Database'
 
 end
